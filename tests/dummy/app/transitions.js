@@ -8,6 +8,7 @@ export default function(){
   this.transition(
     this.fromRoute('pizza'),
     this.toRoute('burrito'),
-    this.useAndReverse('gl')
+    this.use('doom-screen'),
+    this.reverse('pixelize')
   );
 }

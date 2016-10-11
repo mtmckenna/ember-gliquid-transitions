@@ -49,8 +49,8 @@ const TRANSITIONS = {
   }
 };
 
-export default function funFade() {
-  stop(this.oldElement);
+export default function(opts = {}) {
+  var shaderName = opts.shaderName || 'cube';
   var canvas = createCanvas(this.oldElement, this.newElement);
   var styleOptions = styleOptionsFromCanvas(canvas);
 
@@ -72,7 +72,12 @@ export default function funFade() {
     fromImage: convertOldElementToImage,
     toImage: convertNewElementToImage
   }).then(function(hash) {
-    return animateTransition(canvas, TRANSITIONS.cube, hash.fromImage, hash.toImage);
+    return animateTransition(
+      canvas,
+      TRANSITIONS[shaderName],
+      hash.fromImage,
+      hash.toImage
+    );
   }).then(() => {
     showNewElement(this.newElement);
   });
